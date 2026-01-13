@@ -16,6 +16,13 @@ export default function App() {
     setTodos(updatedTodos);
   };
 
+  const editBtn = (index)=>{
+    const newTask = prompt("Edit your task:", todos[index]);
+    if (newTask !== null && newTask.trim().length > 0) {
+      const updatedTodos = todos.map((item, i) => (i === index ? newTask : item));
+      setTodos(updatedTodos);
+    }
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-slate-900 border border-slate-700 rounded-2xl shadow-xl p-6">
@@ -54,7 +61,7 @@ export default function App() {
                 <span className="text-white">{item}</span>
 
                 <div className="flex gap-2">
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm">
+                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md text-sm" onClick={()=>editBtn(index)}>
                     Edit
                   </button>
 
